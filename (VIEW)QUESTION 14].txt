@@ -1,0 +1,27 @@
+QUESTION 14]
+
+Create a view on existing Employee table and perform select, insert, update and delete operation using view. 
+
+CODE :
+
+create table emp_details(emp_no int(10),emp_name varchar(30),emp_gender varchar(1),emp_sal int(30),emp_dept varchar(20));
+insert into emp_details values(1,'Ram','M',300000,'designing');
+insert into emp_details values(2,'Soham','M',300000,'designing');
+insert into emp_details values(3,'Mohan','M',250000,'management');
+insert into emp_details values(4,'Om','M',400000,'coding');
+select * from emp_details;
+create or replace view Emp_view
+AS
+select * from emp_details
+where emp_sal > 80000;
+select * from Emp_view;
+UPDATE Emp_view
+set salary 530000
+where emp_no = 3;
+select * from Emp_view;
+insert into Emp_view values('5','Sonu','M','239000','testing');
+select * from Emp_view;
+delete from Emp_view
+where emp_no = 2;
+select * from Emp_view;
+DROP view Emp_view;

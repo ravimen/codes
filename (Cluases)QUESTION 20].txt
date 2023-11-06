@@ -1,0 +1,18 @@
+QUESTION 20]
+
+Consider the table Employee and demonstrate the WHERE clause, Having clause, Order by clause in a single query using MySQL.
+
+CODE :
+
+create table emp_details(emp_no int(10),emp_name varchar(30),emp_gender varchar(1),emp_sal int(30),emp_dept varchar(20));
+insert into emp_details values(1,'Ram','M',300000,'designing');
+insert into emp_details values(2,'Soham','M',300000,'designing');
+insert into emp_details values(3,'Mohan','M',250000,'management');
+insert into emp_details values(4,'Om','M',400000,'coding');
+select * from emp_details;
+
+SELECT emp_dept, AVG(emp_sal) AS AverageSalary
+FROM emp_details
+GROUP BY emp_dept
+HAVING AverageSalary > 500000
+ORDER BY AverageSalary DESC;

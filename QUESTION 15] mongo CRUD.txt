@@ -1,0 +1,174 @@
+1@PRANAV MINGW64 ~
+$ mongosh
+Current Mongosh Log ID: 6547235ae5f3561ced15773a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.1
+Using Mongosh:          1.6.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-10-19T10:00:01.651+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+   
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+   
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> show dbs;
+
+output:-
+admin        40.00 KiB
+blogDB       72.00 KiB
+codeensDB    60.00 KiB
+comp        180.00 KiB
+config       72.00 KiB
+fruitsDB    144.00 KiB
+heroicDB     36.31 MiB
+local        96.00 KiB
+pranav      184.00 KiB
+shopDB       72.00 KiB
+todolistDB  144.00 KiB
+userDB       80.00 KiB
+wikiDB       72.00 KiB
+
+test> use mydb;
+
+output:-
+switched to db mydb
+
+mydb> db.createCollection('employee');
+
+output:-
+{ ok: 1 }
+
+mydb> show collections;
+
+output:-
+employee
+
+mydb> db.employee.insertOne({name:"Pranav K",age:30,email:"pk@gmail.com"});
+
+output:-
+{
+  acknowledged: true,
+  insertedId: ObjectId("654723e3c8bb5e50c0578d7f")
+}
+
+mydb> db.employee.find();
+
+output:-
+[
+  {
+    _id: ObjectId("654723e3c8bb5e50c0578d7f"),
+    name: 'Pranav K',
+    age: 30,
+    email: 'pk@gmail.com'
+  }
+]
+
+mydb> db.employee.insertMany([{ name: "Vedant gorule", age: 32, email: "dv@gmail.com" }, { name: "Shreeyash Garde", age: 32, email: "sg@gmail.com" }])
+
+output:-
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("65472552c8bb5e50c0578d82"),
+    '1': ObjectId("65472552c8bb5e50c0578d83")
+  }
+}
+
+mydb> db.employee.find();
+
+output:-
+[
+  {
+    _id: ObjectId("654723e3c8bb5e50c0578d7f"),
+    name: 'Pranav K',
+    age: 30,
+    email: 'pk@gmail.com'
+  },
+  {
+    _id: ObjectId("65472552c8bb5e50c0578d82"),
+    name: 'Vedant gorule',
+    age: 32,
+    email: 'dv@gmail.com'
+  },
+  {
+    _id: ObjectId("65472552c8bb5e50c0578d83"),
+    name: 'Shreeyash Garde',
+    age: 32,
+    email: 'sg@gmail.com'
+  }
+]
+
+mydb> db.employee.find({age:30});
+
+output:-
+[
+  {
+    _id: ObjectId("654723e3c8bb5e50c0578d7f"),
+    name: 'Pranav K',
+    age: 30,
+    email: 'pk@gmail.com'
+  }
+]
+
+mydb> db.employee.updateOne( {name:"Pranav K"}, {$set:{email:'pnk@gmail.com'}});
+
+output:-
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+
+mydb> db.employee.findOne({name:"Pranav K"});
+
+output:-
+{
+  _id: ObjectId("654723e3c8bb5e50c0578d7f"),
+  name: 'Pranav K',
+  age: 30,
+  email: 'pnk@gmail.com'
+}
+
+
+mydb> db.employee.deleteOne({email:"pnk@gmail.com"});
+
+output:-
+{ acknowledged: true, deletedCount: 1 }
+mydb> db.employee.findOne({name:"Pranav K"});
+
+output:-
+null
+mydb> db.employee.find();
+
+output:-
+[
+  {
+    _id: ObjectId("65472552c8bb5e50c0578d82"),
+    name: 'Vedant gorule',
+    age: 32,
+    email: 'dv@gmail.com'
+  },
+  {
+    _id: ObjectId("65472552c8bb5e50c0578d83"),
+    name: 'Shreeyash Garde',
+    age: 32,
+    email: 'sg@gmail.com'
+  }
+]

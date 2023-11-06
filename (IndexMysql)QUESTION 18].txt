@@ -1,0 +1,27 @@
+QUESTION 18]
+
+Create an index on existing Employee table and perform all possible operations on index using MySQL
+
+CODE : 
+
+-- Create an index on the LastName column
+CREATE INDEX idx_last_name ON Employee (LastName);
+
+-- Select records using the index
+SELECT * FROM Employee WHERE LastName = 'Smith';
+
+-- Update records using the index
+UPDATE Employee SET Department = 'HR' WHERE LastName = 'Smith';
+
+-- Delete records using the index
+DELETE FROM Employee WHERE LastName = 'Smith';
+
+-- Insert a new employee into the table
+INSERT INTO Employee (EmployeeID, FirstName, LastName, Department, Salary)
+VALUES (1005, 'John', 'Doe', 'IT', 60000.00);
+
+-- Analyze the index
+ANALYZE TABLE Employee;
+
+-- Drop the index
+DROP INDEX idx_last_name ON Employee;
